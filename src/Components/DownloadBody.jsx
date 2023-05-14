@@ -1,73 +1,73 @@
-import React, { useState } from "react";
-import axios from "axios";
+import { useRef, useState } from "react";
 import { Card, Form, Button } from "react-bootstrap";
 
 const DownloadBody = () => {
-  const [inputValue, setInputValue] = useState("");
+  const choseLink = useRef(null);
+  const [beatmapSetId, setBeatmapSetId] = useState("");
+
+  const handleDownload = () => {
+    switch (choseLink.current.value) {
+      case "1":
+        if (beatmapSetId !== "") {
+          window.open(`https://api.nerinyan.moe/d/${beatmapSetId}`, "_blank");
+        } else {
+          window.alert("Please Enter Beatmapsets Id First ");
+        }
+        break;
+      case "2":
+        if (beatmapSetId !== "") {
+          window.open(`https://api.nerinyan.moe/d/${beatmapSetId}?novideo=1`, "_blank");
+        } else {
+          window.alert("Please Enter Beatmapsets Id First ");
+        }
+        break;
+      case "3":
+        if (beatmapSetId !== "") {
+          window.open(`https://api.chimu.moe/v1/download/${beatmapSetId}`, "_blank");
+        } else {
+          window.alert("Please Enter Beatmapsets Id First ");
+        }
+        break;
+      case "4":
+        if (beatmapSetId !== "") {
+          window.open(`https://beatconnect.io/b/${beatmapSetId}/`, "_blank");
+        } else {
+          window.alert("Please Enter Beatmapsets Id First ");
+        }
+        break;
+      default:
+        break;
+    }
+  };
 
   const getInputValue = (e) => {
     const data = e.target.value;
-    setInputValue(data);
+    setBeatmapSetId(data);
   };
 
-  const [dataApiNerinyan, setDataApiNerinyan] = useState([]);
-  const [dataApiChimu, setDataApiChimu] = useState([]);
-  const id = inputValue;
-
-  console.log(dataApiNerinyan);
-  console.log(dataApiChimu);
-
-  const getDataApiNerinyan = async () => {
-    var options = {
-      method: "GET",
-      url: `https://api.nerinyan.moe/d/${id}`,
-      headers: { "Content-Type": "application/json" },
-    };
-    const response = await axios.request(options);
-    setDataApiNerinyan(response.data);
-  };
-  const getDataApiChimu = async () => {
-    var options = {
-      method: "GET",
-      url: `https://api.chimu.moe/v1/download/${id}`,
-      headers: { "Content-Type": "application/json" },
-    };
-    const response = await axios.request(options);
-    setDataApiChimu(response.data);
-  };
-
-  let selectServer = document.getElementById("selectServer");
-
-  const download = () => {
-    if (selectServer.value == 1) {
-      getDataApiNerinyan();
-      console.log("mirror 1");
-    } else if (selectServer.value == 2) {
-      getDataApiChimu();
-      console.log("mirror 2");
-    }
-  };
   return (
     <Card style={{ width: "500px" }}>
       <Card.Body>
         <Card.Title>Osu Beatmap Download Mirror</Card.Title>
         <Form>
           <Form.Group className="mb-3" controlId="inputId">
-            <Form.Label>Masukan Id Map Set</Form.Label>
+            <Form.Label>Beatmapset Id</Form.Label>
             <Form.Control
               type="text"
               aria-describedby="passwordHelpBlock"
               placeholder="1910670"
               onChange={getInputValue}
-              value={inputValue}
+              value={beatmapSetId}
             />
           </Form.Group>
-          <Form.Select aria-label="Default select example" id="selectServer">
+          <Form.Select aria-label="Default select example" ref={choseLink}>
             <option value="1">Nerinyan</option>
-            <option value="2">Chimu</option>
+            <option value="2">Nerinyan (No Video)</option>
+            <option value="3">Chimu</option>
+            <option value="4">Beatconnect</option>
           </Form.Select>
         </Form>
-        <Button variant="primary" className="mt-3" style={{ width: "100%" }} id="btn" onClick={download}>
+        <Button variant="primary" className="mt-3" style={{ width: "100%" }} id="btn" onClick={() => handleDownload()}>
           Download
         </Button>
       </Card.Body>
