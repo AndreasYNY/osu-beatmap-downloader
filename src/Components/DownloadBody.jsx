@@ -76,6 +76,12 @@ const DownloadBody = () => {
   const handleHelp = () => {
     window.open(`https://cdn.discordapp.com/attachments/712958280863055903/1107586308165095455/image.png`, "_blank");
   };
+  const handleCreator = () => {
+    window.open(`https://github.com/CookyNdi`, "_blank");
+  };
+  const handleVercel = () => {
+    window.open(`https://vercel.com/`, "_blank");
+  };
 
   return (
     <div
@@ -89,7 +95,10 @@ const DownloadBody = () => {
       className="w-full min-h-screen bg-cover bg-center bg-white dark:bg-slate-950"
     >
       <div className="w-full min-h-screen flex justify-center items-center backdrop-blur-md">
-        <div style={{ width: "420px" }} className="min-h-screen flex flex-col justify-center items-center backdrop-blur-md opacity-90">
+        <div
+          style={{ width: "420px" }}
+          className="min-h-screen flex flex-col justify-center items-center backdrop-blur-md opacity-90"
+        >
           <div className="h-auto w-full bg-slate-50 border-slate-600 dark:bg-slate-900 border-2 p-6 flex flex-col rounded-xl">
             <h1 className="text-2xl font-semibold text-center mb-2 dark:text-white">Alt Beatmap Downloader</h1>
             <form className="flex flex-col">
@@ -119,11 +128,20 @@ const DownloadBody = () => {
               </select>
             </form>
             <button
-              className="w-full p-3 rounded-lg bg-blue-500 text-white dark:bg-blue-700"
+              className="w-full p-3 rounded-lg bg-blue-500 text-white dark:bg-blue-700 mb-4"
               onClick={() => handleDownload()}
             >
               Download
             </button>
+            <p className="text-black dark:text-white text-center">
+              <span className="cursor-pointer" onClick={() => handleCreator()}>
+                CookyNdi
+              </span>{" "}
+              | Powered by{" "}
+              <span className="cursor-pointer" onClick={() => handleVercel()}>
+                Vercel
+              </span>
+            </p>
           </div>
         </div>
       </div>
