@@ -45,7 +45,31 @@ const DownloadBody = () => {
         break;
       case "4":
         if (beatmapSetId !== "") {
+          window.open(`https://api.chimu.moe/v1/download/${beatmapSetId}?n=0`, "_blank");
+        } else {
+          Swal.fire({
+            title: "Error!",
+            text: "Please Enter Beatmapsets Id or Link First",
+            icon: "error",
+            confirmButtonText: "Back",
+          });
+        }
+        break;
+      case "5":
+        if (beatmapSetId !== "") {
           window.open(`https://beatconnect.io/b/${beatmapSetId}/`, "_blank");
+        } else {
+          Swal.fire({
+            title: "Error!",
+            text: "Please Enter Beatmapsets Id or Link First",
+            icon: "error",
+            confirmButtonText: "Back",
+          });
+        }
+        break;
+      case "6":
+        if (beatmapSetId !== "") {
+          window.open(`https://kitsu.moe/d/${beatmapSetId}`, "_blank");
         } else {
           Swal.fire({
             title: "Error!",
@@ -124,7 +148,9 @@ const DownloadBody = () => {
                 <option value="1">Nerinyan</option>
                 <option value="2">Nerinyan (No Video)</option>
                 <option value="3">Chimu</option>
-                <option value="4">Beatconnect</option>
+                <option value="4">Chimu (No Video)</option>
+                <option value="5">Beatconnect</option>
+                <option value="6">Kitsu Moe</option>
               </select>
             </form>
             <button
