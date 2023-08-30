@@ -129,7 +129,7 @@ const App = () => {
                 <option value="3">Chimu</option>
                 <option value="4">Chimu (No Video)</option>
                 <option value="5">Beatconnect</option>
-                <option value="6">Kitsu Moe</option>
+                <option value="6">Osu Direct</option>
               </select>
             </form>
             <Audio beatmapSetId={beatmapSetId} />

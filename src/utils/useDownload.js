@@ -65,7 +65,7 @@ export const useDownload = (beatmapSetId, choseLink) => {
         break;
       case "6":
         if (beatmapSetId !== "") {
-          window.open(`https://kitsu.moe/d/${beatmapSetId}`, "_blank");
+          window.open(`https://osu.direct/d/${beatmapSetId}`, "_blank");
         } else {
           Swal.fire({
             title: "Error!",
