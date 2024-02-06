@@ -27,6 +27,6 @@ export const AltLink = [
   {
     id: 6,
     name: 'direct',
-    link: '`https://osu.direct/d/ID',
+    link: 'https://osu.direct/d/ID',
   },
 ];
